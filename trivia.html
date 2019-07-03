@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <style>
+        .header h1 {
+            display: inline-block;
+            margin: 0px 20% 50px 40%;
+        }
+        .body h3 {
+            display: inline-block;
+            text-align: center;
+        }
+        .center {
+            margin: 0px 20% 0px 20%;
+        }
+        button {
+            height: 200px;
+            width: 200px;
+        }
+        .middle {
+            margin: 0px auto;
+            width: 20%;
+        }
+        .middle button {
+            display: block;
+            margin-top: 10px;
+        }
+        .points {
+            display: inline-block;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Trivia Night</h1>
+            <div class="points"></div>
+
+        </div>
+        <div class="body">
+            <h3>PLACEHOLDER</h3>
+            <h3 class="center">General Knowledge</h3>
+            <h3>PLACEHOLDER</h3>
+            <div class="left">
+
+            </div>
+            <div class="middle">
+
+                <!-- <input value="100" type="button"> -->
+                <button class="btnMiddle pos1 btn btn-primary">100</button>
+                <script>
+                    $(document).ready(function() {
+                    var num = Math.floor(Math.random() *10);
+                    var total = 0;
+                    $(".points").html("<h3>Total: " + total +"</h3>");
+                    $(".pos1").click(function() {
+                        console.log("hit");
+                        $.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean", displayName)
+                        function displayName(data) {
+                            $(".pos1").replaceWith("<button class='btnMiddle pos1'>" + data.results[num]['question'] + "<br>" + "<input class='true' type='submit' value='True'>" + "<input class='false' type='submit' value='False'>" + "</button>");
+                            $(".true").click(function() {
+                                console.log("yups");
+                                if($(".true").val() == "True" && data.results[num]["correct_answer"] == "True") {
+                                    var points = 100;
+                                    total += points;
+                                    console.log("TRUE!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos1").replaceWith("<button class='btn btn-success btnMiddle pos1'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("nah");
+                                    $(".pos1").replaceWith("<button class='btn btn-danger btnMiddle pos1'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                            $(".false").click(function() {
+                                console.log("mmmmmm");
+                                if($(".false").val() == "False" && data.results[num]["correct_answer"] == "False") {
+                                    var points = 100;
+                                    total += points;
+                                    console.log("False!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos1").replaceWith("<button class='btn btn-success btnMiddle pos1'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("Working, but nah");
+                                    $(".pos1").replaceWith("<button class='btn btn-danger btnMiddle pos1'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                        }
+                    })
+
+                    
+                    })
+                </script>
+
+                <button class="btnMiddle pos2 btn btn-primary">200</button>
+                <script>
+                        $(document).ready(function() {
+                        var num = Math.floor(Math.random() *10);
+                        var total = 0;
+
+                        $(".pos2").click(function() {
+                            $.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=boolean", displayName)
+                            function displayName(data) {
+                                $(".pos2").replaceWith("<button class='btnMiddle pos2'>" + data.results[num]['question'] + "<br>" + "<input class='true' type='submit' value='True'>" + "<input class='false' type='submit' value='False'>" + "</button>");
+                                $(".true").click(function() {
+                                console.log("yups");
+                                if($(".true").val() == "True" && data.results[num]["correct_answer"] == "True") {
+                                    var points = 200;
+                                    total += points;
+                                    console.log("TRUE!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos2").replaceWith("<button class='btn btn-success btnMiddle pos2'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("nah");
+                                    $(".pos2").replaceWith("<button class='btn btn-danger btnMiddle pos2'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                            $(".false").click(function() {
+                                console.log("mmmmmm");
+                                if($(".false").val() == "False" && data.results[num]["correct_answer"] == "False") {
+                                    var points = 200;
+                                    total += points;
+                                    console.log("False!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos2").replaceWith("<button class='btn btn-success btnMiddle pos2'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("Working, but nah");
+                                    $(".pos2").replaceWith("<button class='btn btn-danger btnMiddle pos2'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                    }
+                    })
+                    })
+                </script>
+
+                <button class="btnMiddle pos3 btn btn-primary">300</button>
+                <script>
+                        $(document).ready(function() {
+                            var num = Math.floor(Math.random() *10);
+                            var total = 0;
+                        $(".pos3").click(function() {
+                            $.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple", displayName)
+                            function displayName(data) {
+                                $(".pos3").replaceWith("<button class='btnMiddle pos3'>" + data.results[num]['question'] + "<br>" + "<input class='A' value='" + data.results[num]['incorrect_answers'][2] + "' type='submit'><input class='B' value='" + data.results[num]['correct_answer'] + "' type='submit'>" + "<br>" + "<input class='C' value='" + data.results[num]['incorrect_answers'][0] + "' type='submit'><input class='D' value='" + data.results[num]['incorrect_answers'][1] + "' type='submit'>"+ " </button>");
+                                $(".A").click(function() {
+                                console.log("yups");
+                                if($(".A").val() == data.results[num]["correct_answer"]) {
+                                    var points = 300;
+                                    total += points;
+                                    console.log("TRUE!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos3").replaceWith("<button class='btn btn-success btnMiddle pos3'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("nah");
+                                    $(".pos3").replaceWith("<button class='btn btn-danger btnMiddle pos3'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                            $(".B").click(function() {
+                                console.log("mmmmmm");
+                                if($(".B").val() == data.results[num]["correct_answer"]) {
+                                    var points = 300;
+                                    total += points;
+                                    console.log("False!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos3").replaceWith("<button class='btn btn-success btnMiddle pos3'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("Working, but nah");
+                                    $(".pos3").replaceWith("<button class='btn btn-danger btnMiddle pos3'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                            $(".C").click(function() {
+                                console.log("mmmmmm");
+                                if($(".C").val() == data.results[num]["correct_answer"]) {
+                                    var points = 300;
+                                    total += points;
+                                    console.log("False!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos3").replaceWith("<button class='btn btn-success btnMiddle pos3'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("Working, but nah");
+                                    $(".pos3").replaceWith("<button class='btn btn-danger btnMiddle pos3'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                            $(".D").click(function() {
+                                console.log("mmmmmm");
+                                if($(".D").val() == data.results[num]["correct_answer"]) {
+                                    var points = 300;
+                                    total += points;
+                                    console.log("False!");
+                                    $(".points").html("<h3>Total: " + total +"</h3>");
+                                    $(".pos3").replaceWith("<button class='btn btn-success btnMiddle pos3'>Correct!</button>");
+                                }
+                                else {
+                                    console.log("Working, but nah");
+                                    $(".pos3").replaceWith("<button class='btn btn-danger btnMiddle pos3'>Incorrect</button>");
+                                }
+                                console.log("total: ", total);
+                            })
+                    }
+                    })
+                    })
+                </script>
+
+                <!-- <button class="btnMiddle pos2 btn btn-primary">200</button> -->
+            </div>
+        </div>
+    </div>
+    <!-- <button class="btn btn-primary">100</button> -->
+    <div class="questions"></div>
+    <div class="answers"></div>
+
+    
+
+
+</body>
+</html>
